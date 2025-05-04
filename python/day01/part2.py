@@ -4,6 +4,7 @@ VALUE: Dict[str, int] = {"(": 1, ")": -1}
 BASEMENT: int = -1
 INVALID: int = 0
 
+
 def parse(filename: str) -> str:
     with open(filename, "r") as fp:
         data: str = fp.read().strip()
