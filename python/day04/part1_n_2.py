@@ -31,4 +31,4 @@ def solve(base: str, zeros: int) -> int:
 
 if __name__ == "__main__":
     print("Part 1:", solve("iwrupvqb", 5))  # 346386
-    print("Part 2:", solve("iwrupvqb", 6))  # 346386
+    print("Part 2:", solve("iwrupvqb", 6))  # 9958218
