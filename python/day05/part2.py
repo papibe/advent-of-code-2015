@@ -58,4 +58,4 @@ def solution(filename: str) -> int:
 
 
 if __name__ == "__main__":
-    print(solution("./input.txt"))  # 258
+    print(solution("./input.txt"))  # 53
