@@ -54,14 +54,14 @@ def parse(filename: str) -> AdjacencyMatrix:
 
 
 def solve(adjacency_matrix: AdjacencyMatrix) -> int:
-    min_distance: int = float("-inf")  # type: ignore
+    max_distance: int = float("-inf")  # type: ignore
     visited: List[bool] = [False] * len(adjacency_matrix)
 
     def dfs(node: int, steps: int) -> None:
-        nonlocal min_distance
+        nonlocal max_distance
 
         if all(visited):
-            min_distance = max(min_distance, steps)
+            max_distance = max(max_distance, steps)
             return
 
         for next_node, is_visited in enumerate(visited):
@@ -78,7 +78,7 @@ def solve(adjacency_matrix: AdjacencyMatrix) -> int:
             dfs(initial_node, 0)
             visited[initial_node] = False
 
-    return min_distance
+    return max_distance
 
 
 def solution(filename: str) -> int:
