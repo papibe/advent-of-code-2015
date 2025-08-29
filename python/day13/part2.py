@@ -89,4 +89,4 @@ def solution(filename: str) -> int:
 
 
 if __name__ == "__main__":
-    print(solution("./input.txt"))  # 664
+    print(solution("./input.txt"))  # 640
