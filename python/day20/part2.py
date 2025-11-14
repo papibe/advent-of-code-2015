@@ -1,5 +1,4 @@
-from itertools import combinations
-from typing import Dict, List, Set
+from typing import List, Tuple
 
 
 def sieve_of_eratosthenes(limit: int) -> List[int]:
@@ -11,7 +10,7 @@ def sieve_of_eratosthenes(limit: int) -> List[int]:
     prime = [True] * (limit + 1)
 
     p = 2
-    while (p * p <= limit):
+    while p * p <= limit:
         # If prime[p] is still true, then it is a prime
         if prime[p]:
             # Update all multiples of p as not prime
@@ -27,8 +26,8 @@ def sieve_of_eratosthenes(limit: int) -> List[int]:
     return primes
 
 
-def get_prime_factors(primes: List[int], n: int) -> List[int]:
-    prime_factors: List[int] = []
+def get_prime_factors(primes: List[int], n: int) -> List[Tuple[int, int]]:
+    prime_factors: List[Tuple[int, int]] = []
 
     for p in primes:
         if p * p > n:
@@ -38,14 +37,14 @@ def get_prime_factors(primes: List[int], n: int) -> List[int]:
             times += 1
             n //= p
         if times > 0:
-            prime_factors.append([p, times])
+            prime_factors.append((p, times))
     if n > 1:
-        prime_factors.append([n, 1])
+        prime_factors.append((n, 1))
 
     return prime_factors
 
 
-def get_divisors(prime_factors: List[int], n: int) -> Set[int]:
+def get_divisors(prime_factors: List[Tuple[int, int]], n: int) -> List[int]:
     divisors: List[int] = []
 
     def _get_divisors(index: int, divisor: int) -> None:
@@ -58,14 +57,15 @@ def get_divisors(prime_factors: List[int], n: int) -> Set[int]:
         exponent: int = prime_factors[index][1]
         value: int = 1
         for _ in range(exponent + 1):
-            _get_divisors(index + 1, divisor*value)
+            _get_divisors(index + 1, divisor * value)
             value *= prime
 
     _get_divisors(0, 1)
     return divisors
 
+
 def get_presents(primes: List[int], n: int) -> int:
-    prime_factors: List[int] = get_prime_factors(primes, n)
+    prime_factors: List[Tuple[int, int]] = get_prime_factors(primes, n)
 
     presents: int = 11 * sum(get_divisors(prime_factors, n))
 
